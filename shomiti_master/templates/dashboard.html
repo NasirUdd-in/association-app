@@ -1,0 +1,375 @@
+{% extends 'base/base.html' %} 
+{% block title %}Dashboard{% endblock title %}
+ {% block content %}
+
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <script
+        src="https://s.dsbpos.com/public/lte/plugins/jquery/jquery.min.js"
+        type="text/javascript"
+      ></script>
+      <script
+        src="https://s.dsbpos.com/public/lte/plugins/chart.js/Chart.min.js"
+        type="text/javascript"
+      ></script>
+      <style type="text/css" media="screen">
+        .info-box-text {
+          font-weight: normal;
+        }
+
+        .info-box-number {
+          font-weight: bold;
+          font-size: 30px;
+        }
+      </style>
+      <div class="row bg-white p-4 mb-4 text-center">
+        <h4 style="margin: 0 auto">স্বপ্ন সমবায় সমিতি</h4>
+        <a
+          href="http://lt.dsbpos.com/"
+          class="btn btn-success btn-lg head-link"
+          role="button"
+          target="new_window"
+          >ভিডিও টিউটোরিয়াল</a
+        >
+        <br />
+      </div>
+      <div class="row bg-white p-4 mb-4 text-center">
+        <h4 style="margin: 0 auto">
+          সমিতি সফট্ওয়্যার নিতে যোগাযোগঃ 01612-9999 66
+        </h4>
+      </div>
+      <div class="row bg-white p-4 mb-4">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-block btn-lg text-white dashboard-options dashboard-options-today btn-success"
+                style="cursor: pointer"
+                data-option="today"
+                >আজ</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-yesterday"
+                style="cursor: pointer"
+                data-option="yesterday"
+                >গতকাল</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-this-week"
+                style="cursor: pointer"
+                data-option="this-week"
+                >এই সপ্তাহ</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-last-week"
+                style="cursor: pointer"
+                data-option="last-week"
+                >গত সপ্তাহ</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-this-month"
+                style="cursor: pointer"
+                data-option="this-month"
+                >এই মাস</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-last-month"
+                style="cursor: pointer"
+                data-option="last-month"
+                >গত মাস</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-this-year"
+                style="cursor: pointer"
+                data-option="this-year"
+                >এই বছর</a
+              >
+            </div>
+            <div class="col-md-3 mb-1">
+              <a
+                class="btn btn-info btn-block btn-lg text-white dashboard-options dashboard-options-last-year"
+                style="cursor: pointer"
+                data-option="last-year"
+                >গত বছর</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-4 mt-4">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-7 offset-md-5">
+              <div class="row">
+                <div class="col-md-4">
+                  <a
+                    href="https://s.dsbpos.com/branch/members/create"
+                    style="text-decoration: none"
+                  >
+                    <div class="info-box bg-info">
+                      <span class="info-box-icon bg-white text-dark elevation-1"
+                        ><i class="fa fa-users"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">
+                          <h4>নতুন</h4>
+                          <h6>সদস্য</h6>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a
+                    href="https://s.dsbpos.com/loans/collections/create"
+                    style="text-decoration: none"
+                  >
+                    <div class="info-box bg-info">
+                      <span class="info-box-icon bg-white text-dark elevation-1"
+                        ><i class="fa fa-money-check-alt"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">
+                          <h4>নতুন</h4>
+                          <h6>সংগ্রহ</h6>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a
+                    href="https://s.dsbpos.com/loans/loans"
+                    style="text-decoration: none"
+                  >
+                    <div class="info-box bg-info">
+                      <span class="info-box-icon bg-white text-dark elevation-1"
+                        ><i class="fa fa-money-check-alt"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">
+                          <h4>নতুন</h4>
+                          <h6>ঋণ</h6>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info-box bg-info mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="savings">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">সঞ্চয় আদায়</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-box bg-info mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="loan">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">ঋণ আদায়</span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-md-4">
+          <div class="info-box bg-danger mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="withdraw">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">উত্তোলন</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info-box bg-danger mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fas fa-dollar-sign"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number text-white"
+                ><span id="expenses">0</span>&nbsp;</span
+              >
+              <span class="info-box-text text-white">খরচ</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-box bg-primary mb-3">
+            <span class="info-box-icon bg-white text-white elevation-1"
+              ><i class="fa fa-user text-dark"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"><span id="members">0</span></span>
+              <span class="info-box-text">নতুন সদস্য</span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-md-4">
+          <div class="info-box bg-primary mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="new-loan">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">নতুন ঋণ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info-box bg-green mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fas fa-dollar-sign"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number text-white"
+                ><span id="fdr-deposit">0</span>&nbsp;</span
+              >
+              <span class="info-box-text text-white">এফডিআর ডিপোজিট</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-box bg-primary mb-3">
+            <span class="info-box-icon bg-white text-white elevation-1"
+              ><i class="fa fa-user text-dark"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"><span id="new-fdr">0</span></span>
+              <span class="info-box-text">নতুন এফডিআর</span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-md-4">
+          <div class="info-box bg-red mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="fdr-withdraw">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">এফডিআর উত্তোলন</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info-box bg-green mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fas fa-dollar-sign"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number text-white"
+                ><span id="dps-deposit">0</span>&nbsp;</span
+              >
+              <span class="info-box-text text-white">ডিপিএস ডিপোজিট</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-box bg-primary mb-3">
+            <span class="info-box-icon bg-white text-white elevation-1"
+              ><i class="fa fa-user text-dark"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"><span id="new-dps">0</span></span>
+              <span class="info-box-text">টোটাল ডিপিএস</span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-md-4">
+          <div class="info-box bg-red mb-3">
+            <span class="info-box-icon bg-white elevation-1"
+              ><i class="fa fa-money-check-alt"></i
+            ></span>
+            <div class="info-box-content">
+              <span class="info-box-number"
+                ><span id="dps-withdraw">0</span>&nbsp;</span
+              >
+              <span class="info-box-text">ডিপিএস উত্তোলন</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-4 mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-white">
+              <h2 class="text-center"><strong>মাসিক কালেকশন গ্রাফ</strong></h2>
+            </div>
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

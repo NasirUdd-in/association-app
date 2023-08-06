@@ -1,0 +1,82 @@
+<aside id="left-panel" class="left-panel" style="background: #3699ff">
+    <nav class="navbar navbar-expand-sm navbar-default" style="background: #3699ff">
+        <div id="main-menu" class="main-menu collapse navbar-collapse" style="background:#3699ff">
+            <ul class="nav navbar-nav">
+                <li class="active" style="background: #3699ff" >
+                    <a href="{% url 'dashboard' %}" ><i class="menu-icon fa fa-home"></i> ড্যাশবোর্ড</a>
+                </li>
+               
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder"></i>ব্রাঞ্চ</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><a>সদস্য</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'newmembers' %}">নতুন সদস্য</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'members_list' %}">সদস্য লিস্ট</a></li>
+
+                        <li><a> কর্মী </a></li>
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'new_employee' %}">নতুন কর্মী</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'employee_list' %}">কর্মী লিস্ট</a></li>
+                    </ul>
+                </li>
+               
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-briefcase"></i>ঋণ ও সংগ্রহ</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'loan_list' %}"> ঋণ লিষ্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'loan_collect' %}">সংগ্রহ </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'loan_fine' %}">জরিমানা</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'loan_ledger' %}">লেজার </a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calculator"></i>খরচ</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'add_expenses' %}">নতুন খরচ </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'expenses_list' %}">খরচের লিস্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'category_expenses' %}"> খরচ ক্যাটাগরি </a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-university"></i>অ্যাকাউন্টস্</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'accounts' %}"> অ্যাকাউন্টস্ </a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cubes"></i>ডিপিএস</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'add_dps' %}">  নতুন ডিপিএস </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'dps_list' %}">ডিপিএস লিস্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'dps_collections' %}">ডিপিএস কালেকশান  </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'dps_opening_report' %}">ডিপিএস ওপেনিং রিপোর্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'dps-withdraw-report' %}">ডিপিএস উত্তোলন রিপোর্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'dps_schemes' %}">ডিপিএস স্কিমসমুহ  </a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cube"></i>এফডিআর</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'add_fdr' %}">নতুন এফডিআর</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'fdr_list' %}">এফডিআর লিস্ট</a></li>
+                        {% comment %} <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'members_list' %}">খরচের লিস্ট</a></li> {% endcomment %}
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'fdr_opening_report' %}">এফডিআর ওপেনিং রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'fdr_withdraw_report' %}">এফডিআর উত্তোলন রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'fdr_list' %}">এফডিআর স্কিম</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-filter"></i>রিপোর্ট</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: white"></i><a href="{% url 'summery_report' %}">সংক্ষিপ্ত রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'collection_report' %}"> সংগ্রহ রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'report_by_employee' %}">কর্মী রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'report_by_member' %}">সদস্যের রিপোর্ট </a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'loan_report' %}">ঋণ রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'fine_report' %}">ফাইন রিপোর্ট</a></li>
+                        <li><i class="fa fa-list" style="color: white"></i><a href="{% url 'expense_report' %}">খরচ রিপোর্ট</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>

@@ -1,0 +1,157 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 25px">
+      <div class="card-header bg-info text-white" style="cursor: pointer">
+        <h4>
+          <strong>ডিপিএস লিস্ট</strong>
+          <a
+            class="btn btn-success btn-lg"
+            style="float: right"
+            href="https://s.dsbpos.com/dps/dps/create"
+            ><i class="fa fa-plus"></i>&nbsp;নতুন ডিপিএস</a
+          >
+        </h4>
+      </div>
+      <div class="card-body mb-0 pb-0">
+        <form
+          action="https://s.dsbpos.com/dps/dps"
+          method="get"
+          accept-charset="utf-8"
+        >
+          <div class="row mb-0 pb-0">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="employee_id_"><strong>কর্মী</strong></label>
+                <select
+                  name="employee_id"
+                  id="employee_id_"
+                  class="form-control select2bs4"
+                >
+                  <option value="">কর্মী সিলেক্ট করুন</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="type_"><strong>টাইপ</strong></label>
+                <select name="type" id="type_" class="form-control select2bs4">
+                  <option value="">টাইফ সিলেক্ট করুন</option>
+                  <option value="open">ওপেন</option>
+                  <option value="close">বন্ধ</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="member_id_"><strong>সদস্য</strong></label>
+                <select
+                  class="form-control select2bs4"
+                  name="member_id"
+                  id="member_id"
+                >
+                  <option value="0">সদস্য সিলেক্ট করুন</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group pt-4 mt-2">
+                <button type="submit" class="btn btn-md btn-success btn-block">
+                  <i class="fa fa-search"></i>&nbsp;সার্চ
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-body">
+        <span id="datatable-export-file-name" style="display: none">DPS</span>
+        <table
+          class="table table-bordered table-striped datatable dataTable"
+          id="DataTables_Table_0"
+        >
+          <thead>
+            <tr>
+              <th>নং</th>
+              <th>ওপেন তারিখ &amp; টাইপ</th>
+              <th>ডিপিএস নং &amp; মেম্বার আইডি</th>
+              <th>নাম &amp; মোবাইল</th>
+              <th>ট্রামস্- মাস &amp; অ্যামাউন্ট</th>
+              <th>পেইড ট্রামস্</th>
+              <th>মোট পেইড</th>
+              <th>লাভের হার</th>
+              <th>উত্তোলন তারিখ</th>
+              <th>উত্তোলন করেছে &amp; অ্যামাউন্ট</th>
+              <th>নোট</th>
+              <th>অ্যাকশন</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total:</td>
+              <td class="text-right">0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function dpsDetails(id, type) {}
+    </script>
+  </div>
+</section>
+{% endblock content %}

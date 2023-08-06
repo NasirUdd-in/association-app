@@ -1,0 +1,204 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+
+<section class="content" style="padding-top: 25px">
+    <div class="container-fluid">
+      <div class="modal fade" id="modal">
+        <div class="modal-dialog modal-lg" id="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-title"></h4>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                বন্ধ
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom: 25px">
+        <div class="card-header bg-info text-white" style="cursor: pointer">
+          <h4>
+            <strong>সংক্ষিপ্ত রিপোর্ট</strong>
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3 offset-md-4">
+              <label for="daterange"><strong>ডেট রেন্জ</strong></label>
+              <input
+                type="text"
+                name="daterange"
+                id="daterange"
+                value="2023-08-01 - 2023-08-31"
+                class="form-control"
+                autocomplete="off"
+                placeholder="Search by daterange"
+              />
+            </div>
+            <div class="col-md-1">
+              <label><strong>&nbsp;</strong></label>
+              <button
+                type="button"
+                class="btn btn-md btn-block btn-primary"
+                onclick="if (!window.__cfRLUnblockHandlers) return false; search()"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-info text-white">
+                  <h3 class="text-center"><strong>ইনকামিং</strong></h3>
+                </div>
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td style="width: 30%">সঞ্চয় আদায়</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">ঋণ আদায়</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">ঋণ প্রসেসিং ফি</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">জরিমানা আদায়</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">এফডিআর ওপেন</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">ডিপিএস ওপেন</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">মোট</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p></p>
+                  <h5 class="text-center"></h5>
+                  <p></p>
+                  <p></p>
+                  <h5 class="text-center">
+                    মোট সদস্য : <strong>0 ব্যক্তি</strong>
+                  </h5>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-danger text-white">
+                  <h3 class="text-center"><strong>আউটগোয়িং</strong></h3>
+                </div>
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td style="width: 30%">মোট ঋণ</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">মোট খরচ</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">মোট ঋণ বিতরণ</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">এফডিআর উত্তোলন</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">ডিপিএস উত্তোলন</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30%">মোট</td>
+                        <td style="width: 5%; text-align: center">:</td>
+                        <td style="width: 65%; text-align: right">0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p></p>
+                  <h5 class="text-center">
+                    নতুন ঋণ : <strong>0</strong> ইউনিট / <strong> 0</strong>
+                  </h5>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function search() {
+          var daterange = $("#daterange").val();
+          var from = daterange.split(" - ")[0];
+          var to = daterange.split(" - ")[1];
+  
+          from = from == undefined ? "" : from;
+          to = to == undefined ? "" : to;
+  
+          openLink(
+            "https://s.dsbpos.com/reports/summery-reports/" + from + "&" + to
+          );
+        }
+      </script>
+    </div>
+  </section>
+  {% endblock content %}

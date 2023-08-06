@@ -1,0 +1,1026 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+
+<div class="container-fluid">
+  <div class="modal fade" id="modal">
+    <div class="modal-dialog modal-lg" id="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            বন্ধ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom: 25px">
+    <div class="card-header bg-info text-white" style="cursor: pointer">
+      <h4>
+        <strong>নতুন সদস্য</strong>
+        <a
+          class="btn btn-success btn-sm"
+          style="float: right"
+          href="https://s.dsbpos.com/branch/members"
+          >ফিরে যাও</a
+        >
+      </h4>
+    </div>
+    <div class="card-body">
+      <form
+        action="https://s.dsbpos.com/branch/members"
+        method="post"
+        id="create-form"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="hidden"
+          name="_token"
+          value="bvQpWUGTdZhx8fbBYDhhY7ReJwj2im6MSBTNhfXI"
+        />
+        <div class="row mb-4">
+          <div class="col-12 mb-4">
+            <h4 class="bg-success p-2 text-center text-white">
+              <strong>সদস্য তথ্য</strong>
+            </h4>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group row">
+              <div class="col-md-3">
+                <label for="joining_date"
+                  ><strong
+                    >ভর্তির তারিখ<span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="joining_date"
+                  id="joining_date"
+                  value="2023-08-01"
+                  required=""
+                />
+              </div>
+              <div class="col-md-7">
+                <label for="employee_id"
+                  ><strong
+                    >কর্মী <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <select
+                  name="employee_id"
+                  id="employee_id"
+                  class="form-control select2bs4 select2-hidden-accessible"
+                  data-select2-id="employee_id"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="0" data-select2-id="2">
+                    কর্মী সিলেক্ট করুন
+                  </option></select
+                ><span
+                  class="select2 select2-container select2-container--bootstrap4"
+                  dir="ltr"
+                  data-select2-id="1"
+                  style="width: 436.85px"
+                  ><span class="selection"
+                    ><span
+                      class="select2-selection select2-selection--single"
+                      role="combobox"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      tabindex="0"
+                      aria-disabled="false"
+                      aria-labelledby="select2-employee_id-container"
+                      ><span
+                        class="select2-selection__rendered"
+                        id="select2-employee_id-container"
+                        role="textbox"
+                        aria-readonly="true"
+                        title="কর্মী সিলেক্ট করুন"
+                        >কর্মী সিলেক্ট করুন</span
+                      ><span
+                        class="select2-selection__arrow"
+                        role="presentation"
+                        ><b role="presentation"></b></span></span></span
+                  ><span class="dropdown-wrapper" aria-hidden="true"></span
+                ></span>
+              </div>
+              <div class="col-md-2">
+                <label for="status"><strong>ষ্টাটাস :</strong></label>
+                <select
+                  name="status"
+                  id="status"
+                  class="form-control select2bs4"
+                  tabindex="0"
+                  aria-hidden="false"
+                >
+                  <option value="1">অ্যাকটিভ</option>
+                  <option value="0">ইন-অ্যাকটিভ</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="id_no"
+                  ><strong
+                    >আইডি নং <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="id_no"
+                  id="id_no"
+                  value=""
+                  required=""
+                />
+              </div>
+              <div class="col-6">
+                <label for="name"
+                  ><strong
+                    >নাম <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  value=""
+                  required=""
+                />
+                <div
+                  data-lastpass-icon-root="true"
+                  style="
+                    position: relative !important;
+                    height: 0px !important;
+                    width: 0px !important;
+                    float: left !important;
+                  "
+                ></div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="mobile"
+                  ><strong
+                    >মোবাইল <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mobile"
+                  id="mobile"
+                  value=""
+                  required=""
+                />
+              </div>
+              <div class="col-6">
+                <label for="nid"
+                  ><strong
+                    >এনআইডি নং<span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nid"
+                  id="nid"
+                  value=""
+                  required=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="address"
+                  ><strong
+                    >ঠিকানা <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  id="address"
+                  value=""
+                  required=""
+                />
+              </div>
+              <div class="col-6">
+                <label for="shop"><strong>দোকান </strong></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="shop"
+                  id="shop"
+                  value=""
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="remarks"><strong>নোট </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="remarks"
+                id="remarks"
+                value=""
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-7">
+                <div class="form-group">
+                  <label for="father"><strong>পিতার নাম </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="father"
+                    id="father"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="mother"><strong>মায়ের নাম </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="mother"
+                    id="mother"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="spouse"><strong>ম্বামি / স্ত্রী </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="spouse"
+                    id="spouse"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="religion"><strong>ধর্ম </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="religion"
+                    id="religion"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="second_contact"
+                    ><strong>২য় যোগাযোগ </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="second_contact"
+                    id="second_contact"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row mt-4">
+                  <div
+                    class="col-10 offset-1 p-2 text-center"
+                    style="height: 220px; border: 1px solid #ccc"
+                  >
+                    <img
+                      id="output"
+                      class="img img-fluid"
+                      style="height: 98.5%; width: 95%"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-10 offset-1 p-0">
+                    <label for="file" class="btn btn-primary btn-block"
+                      ><strong
+                        ><i class="fa fa-image"></i>&nbsp;আপলোড ছবি</strong
+                      ></label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="file"
+                      id="file"
+                      accept="image/*"
+                      onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+                <div class="form-group text-center">
+                  <strong
+                    ><small
+                      ><a href="https://picresize.com/" target="_blank"
+                        >Online Image Resizing</a
+                      ></small
+                    ></strong
+                  >
+                  <br />
+                  <strong
+                    ><small class="text-danger"
+                      >*** Max Image Size 200 kb</small
+                    ></strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 mb-4">
+            <h4 class="bg-success p-2 text-center text-white">
+              <strong>গ্রান্টার তথ্য</strong>
+            </h4>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label for="granter_name"><strong>নাম </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="granter_name"
+                id="granter_name"
+                value=""
+              />
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="granter_mobile"><strong>মোবাইল </strong></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="granter_mobile"
+                  id="granter_mobile"
+                  value=""
+                />
+                <div
+                  data-lastpass-icon-root="true"
+                  style="
+                    position: relative !important;
+                    height: 0px !important;
+                    width: 0px !important;
+                    float: left !important;
+                  "
+                ></div>
+              </div>
+              <div class="col-6">
+                <label for="granter_nid"><strong>এনআইডি নং </strong></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="granter_nid"
+                  id="granter_nid"
+                  value=""
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="granter_address"><strong>ঠিকানা </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="granter_address"
+                id="granter_address"
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="granter_shop"><strong>দোকান </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="granter_shop"
+                id="granter_shop"
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="granter_remarks"><strong>নোট </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="granter_remarks"
+                id="granter_remarks"
+                value=""
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-7">
+                <div class="form-group">
+                  <label for="granter_father"
+                    ><strong>পিতার নাম </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="granter_father"
+                    id="granter_father"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="granter_mother"
+                    ><strong>মায়ের নাম </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="granter_mother"
+                    id="granter_mother"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="granter_spouse"
+                    ><strong>ম্বামি / স্ত্রী </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="granter_spouse"
+                    id="granter_spouse"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="granter_religion"><strong>ধর্ম </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="granter_religion"
+                    id="granter_religion"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="granter_second_contact"
+                    ><strong>২য় যোগাযোগ </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="granter_second_contact"
+                    id="granter_second_contact"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row mt-4">
+                  <div
+                    class="col-10 offset-1 p-2 text-center"
+                    style="height: 220px; border: 1px solid #ccc"
+                  >
+                    <img
+                      id="granter_output"
+                      class="img img-fluid"
+                      style="height: 98.5%; width: 95%"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-10 offset-1 p-0">
+                    <label for="granter_file" class="btn btn-primary btn-block"
+                      ><strong
+                        ><i class="fa fa-image"></i>&nbsp;আপলোড ছবি</strong
+                      ></label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="granter_file"
+                      id="granter_file"
+                      accept="image/*"
+                      onchange="if (!window.__cfRLUnblockHandlers) return false; loadGranterFile(event)"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+                <div class="form-group text-center">
+                  <strong
+                    ><small
+                      ><a href="https://picresize.com/" target="_blank"
+                        >Online Image Resizing</a
+                      ></small
+                    ></strong
+                  >
+                  <br />
+                  <strong
+                    ><small class="text-danger"
+                      >*** Max Image Size 200 kb</small
+                    ></strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 mb-4">
+            <h4 class="bg-success p-2 text-center text-white">
+              <strong>নমিনি তথ্য</strong>
+            </h4>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label for="nominie_name"><strong>নাম </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="nominie_name"
+                id="nominie_name"
+                value=""
+              />
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="nominie_mobile"><strong>মোবাইল </strong></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nominie_mobile"
+                  id="nominie_mobile"
+                  value=""
+                />
+                <div
+                  data-lastpass-icon-root="true"
+                  style="
+                    position: relative !important;
+                    height: 0px !important;
+                    width: 0px !important;
+                    float: left !important;
+                  "
+                ></div>
+              </div>
+              <div class="col-6">
+                <label for="nominie_nid"><strong>এনআইডি নং </strong></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nominie_nid"
+                  id="nominie_nid"
+                  value=""
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nominie_address"><strong>ঠিকানা </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="nominie_address"
+                id="nominie_address"
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="nominie_shop"><strong>দোকান </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="nominie_shop"
+                id="nominie_shop"
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="nominie_remarks"><strong>নোট </strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="nominie_remarks"
+                id="nominie_remarks"
+                value=""
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-7">
+                <div class="form-group">
+                  <label for="nominie_father"
+                    ><strong>পিতার নাম </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nominie_father"
+                    id="nominie_father"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nominie_mother"
+                    ><strong>মায়ের নাম </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nominie_mother"
+                    id="nominie_mother"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nominie_spouse"
+                    ><strong>ম্বামি / স্ত্রী </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nominie_spouse"
+                    id="nominie_spouse"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nominie_religion"><strong>ধর্ম </strong></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nominie_religion"
+                    id="nominie_religion"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nominie_second_contact"
+                    ><strong>২য় যোগাযোগ </strong></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nominie_second_contact"
+                    id="nominie_second_contact"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row mt-4">
+                  <div
+                    class="col-10 offset-1 p-2 text-center"
+                    style="height: 220px; border: 1px solid #ccc"
+                  >
+                    <img
+                      id="nominie_output"
+                      class="img img-fluid"
+                      style="height: 98.5%; width: 95%"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-10 offset-1 p-0">
+                    <label for="nominie_file" class="btn btn-primary btn-block"
+                      ><strong
+                        ><i class="fa fa-image"></i>&nbsp;আপলোড ছবি</strong
+                      ></label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="nominie_file"
+                      id="nominie_file"
+                      accept="image/*"
+                      onchange="if (!window.__cfRLUnblockHandlers) return false; loadNominieFile(event)"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+                <div class="form-group text-center">
+                  <strong
+                    ><small
+                      ><a href="https://picresize.com/" target="_blank"
+                        >Online Image Resizing</a
+                      ></small
+                    ></strong
+                  >
+                  <br />
+                  <strong
+                    ><small class="text-danger"
+                      >*** Max Image Size 200 kb</small
+                    ></strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 mb-4">
+            <h4 class="bg-success p-2 text-center text-white">
+              <strong>লগিন ইনফরমেশন</strong>
+            </h4>
+          </div>
+          <div class="col-12 mb-4">
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label for="username"
+                  ><strong
+                    >ইউজার নাম : <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  id="username"
+                  value=""
+                  required=""
+                />
+              </div>
+              <div class="col-md-4">
+                <label for="password"
+                  ><strong
+                    >পাসওয়ার্ড :
+                    <span class="text-danger">* 11223344</span></strong
+                  ></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  required=""
+                  value="11223344"
+                />
+                <div
+                  data-lastpass-icon-root="true"
+                  style="
+                    position: relative !important;
+                    height: 0px !important;
+                    width: 0px !important;
+                    float: left !important;
+                  "
+                ></div>
+              </div>
+              <div class="col-md-4">
+                <label for="password_confirmation"
+                  ><strong
+                    >পাসওয়ার্ড নিশ্চিত করুন :
+                    <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password_confirmation"
+                  id="password_confirmation"
+                  required=""
+                  value="11223344"
+                />
+                <div
+                  data-lastpass-icon-root="true"
+                  style="
+                    position: relative !important;
+                    height: 0px !important;
+                    width: 0px !important;
+                    float: left !important;
+                  "
+                ></div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label for="language_id"
+                  ><strong
+                    >ভাষা : <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <select
+                  name="language_id"
+                  id="language_id"
+                  class="form-control select2bs4 select2-hidden-accessible"
+                  data-select2-id="language_id"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="1">English</option>
+                  <option value="2" selected="" data-select2-id="6">
+                    বাংলা
+                  </option></select
+                ><span
+                  class="select2 select2-container select2-container--bootstrap4"
+                  dir="ltr"
+                  data-select2-id="5"
+                  style="width: 427.333px"
+                  ><span class="selection"
+                    ><span
+                      class="select2-selection select2-selection--single"
+                      role="combobox"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      tabindex="0"
+                      aria-disabled="false"
+                      aria-labelledby="select2-language_id-container"
+                      ><span
+                        class="select2-selection__rendered"
+                        id="select2-language_id-container"
+                        role="textbox"
+                        aria-readonly="true"
+                        title="বাংলা"
+                        >বাংলা</span
+                      ><span
+                        class="select2-selection__arrow"
+                        role="presentation"
+                        ><b role="presentation"></b></span></span></span
+                  ><span class="dropdown-wrapper" aria-hidden="true"></span
+                ></span>
+              </div>
+              <div class="col-md-3">
+                <label for="role_id_"
+                  ><strong
+                    >রুল : <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <select
+                  name="role_id"
+                  id="role_id_"
+                  class="form-control select2bs4 select2-hidden-accessible"
+                  data-select2-id="role_id_"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="16" data-select2-id="8">Member</option></select
+                ><span
+                  class="select2 select2-container select2-container--bootstrap4"
+                  dir="ltr"
+                  data-select2-id="7"
+                  style="width: 313px"
+                  ><span class="selection"
+                    ><span
+                      class="select2-selection select2-selection--single"
+                      role="combobox"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      tabindex="0"
+                      aria-disabled="false"
+                      aria-labelledby="select2-role_id_-container"
+                      ><span
+                        class="select2-selection__rendered"
+                        id="select2-role_id_-container"
+                        role="textbox"
+                        aria-readonly="true"
+                        title="Member"
+                        >Member</span
+                      ><span
+                        class="select2-selection__arrow"
+                        role="presentation"
+                        ><b role="presentation"></b></span></span></span
+                  ><span class="dropdown-wrapper" aria-hidden="true"></span
+                ></span>
+              </div>
+              <div class="col-md-3">
+                <label for="status"
+                  ><strong
+                    >লগইন অনুমতি : <span class="text-danger">*</span></strong
+                  ></label
+                >
+                <select
+                  name="status"
+                  id="status"
+                  class="form-control select2bs4 select2-hidden-accessible"
+                  data-select2-id="status"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="1" data-select2-id="11">অ্যাকটিভ</option>
+                  <option value="0">ইন-অ্যাকটিভ</option></select
+                ><span
+                  class="select2 select2-container select2-container--bootstrap4"
+                  dir="ltr"
+                  data-select2-id="10"
+                  style="width: 313px"
+                  ><span class="selection"
+                    ><span
+                      class="select2-selection select2-selection--single"
+                      role="combobox"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      tabindex="0"
+                      aria-disabled="false"
+                      aria-labelledby="select2-status-container"
+                      ><span
+                        class="select2-selection__rendered"
+                        id="select2-status-container"
+                        role="textbox"
+                        aria-readonly="true"
+                        title="অ্যাকটিভ"
+                        >অ্যাকটিভ</span
+                      ><span
+                        class="select2-selection__arrow"
+                        role="presentation"
+                        ><b role="presentation"></b></span></span></span
+                  ><span class="dropdown-wrapper" aria-hidden="true"></span
+                ></span>
+              </div>
+              <div class="col-md-2">
+                <label for="otp">&nbsp;</label>
+                <p class="mt-2">
+                  <strong>এসএমএস ওটিপি</strong> &nbsp;&nbsp;<input
+                    type="checkbox"
+                    name="otp"
+                    id="otp"
+                    value="1"
+                    style="
+                      transform: scale(2, 2);
+                      margin-left: 10px;
+                      cursor: pointer;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="what_to_do" id="what_to_do" value="1" />
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg"
+          onclick="if (!window.__cfRLUnblockHandlers) return false; $('#what_to_do').val('1');"
+        >
+          <i class="fa fa-save"></i>&nbsp; সেভ ও বন্ধ করুন
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success btn-lg"
+          onclick="if (!window.__cfRLUnblockHandlers) return false; $('#what_to_do').val('0');"
+        >
+          <i class="fa fa-save"></i>&nbsp; সেভ ও নতুন এন্ট্রি করুন
+        </button>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var loadFile = function (event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById("output");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+
+    var loadGranterFile = function (event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById("granter_output");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+
+    var loadNominieFile = function (event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById("nominie_output");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+  </script>
+</div>
+
+{% endblock content %}

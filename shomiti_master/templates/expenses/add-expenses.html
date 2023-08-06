@@ -1,0 +1,352 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://s.dsbpos.com/public/lte/plugins/jquery/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <div class="col-md-8 offset-md-2">
+      <div class="card" style="margin-bottom: 25px">
+        <div class="card-header bg-info text-white" style="cursor: pointer">
+          <h4>
+            <strong>নতুন খরচ</strong>
+            <a
+              class="btn btn-success btn-sm"
+              style="float: right"
+              href="https://s.dsbpos.com/expenses/expenses"
+              >ফিরে যাও</a
+            >
+          </h4>
+        </div>
+        <div class="card-body">
+          <form
+            action="https://s.dsbpos.com/expenses/expenses"
+            method="post"
+            id="create-form"
+            enctype="multipart/form-data"
+          >
+            <input
+              type="hidden"
+              name="_token"
+              value="623iz3BL8MOGXnHq27rjPyoCwms8GGufzEe0R8Vl"
+            />
+            <div class="form-group">
+              <label for="expense_category_id_"
+                ><strong
+                  >ক্যাটাগরি সিলেক্ট করুন :
+                  <span class="text-danger">*</span></strong
+                ></label
+              >
+              <select
+                name="expense_category_id"
+                id="expense_category_id_"
+                class="form-control select2bs4 select2-hidden-accessible"
+                data-select2-id="expense_category_id_"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option value="0" data-select2-id="2">
+                  ক্যাটাগরি সিলেক্ট করুন
+                </option></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="1"
+                style="width: 604px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-expense_category_id_-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-expense_category_id_-container"
+                      role="textbox"
+                      aria-readonly="true"
+                      title="ক্যাটাগরি সিলেক্ট করুন"
+                      >ক্যাটাগরি সিলেক্ট করুন</span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="form-group">
+              <label for="date"
+                ><strong
+                  >তারিখ : <span class="text-danger">*</span></strong
+                ></label
+              >
+              <input
+                type="text"
+                class="form-control datepicker"
+                name="date"
+                id="date"
+                value="2023-08-01"
+                required=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="amount"
+                ><strong
+                  >অ্যামাউন্ট : <span class="text-danger">*</span></strong
+                ></label
+              >
+              <input
+                type="number"
+                min="0"
+                value="0"
+                class="form-control text-right"
+                name="amount"
+                id="amount"
+                required=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="employee_id_"
+                ><strong
+                  >কর্মী সিলেক্ট করুন :
+                  <span class="text-danger">*</span></strong
+                ></label
+              >
+              <select
+                name="employee_id"
+                id="employee_id_"
+                class="form-control select2bs4 select2-hidden-accessible"
+                data-select2-id="employee_id_"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option value="0" data-select2-id="4">
+                  কর্মী সিলেক্ট করুন
+                </option></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="3"
+                style="width: 604px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-employee_id_-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-employee_id_-container"
+                      role="textbox"
+                      aria-readonly="true"
+                      title="কর্মী সিলেক্ট করুন"
+                      >কর্মী সিলেক্ট করুন</span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="form-group">
+              <label for="remarks"><strong>নোট :</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="remarks"
+                id="remarks"
+                value=""
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="create-button">
+              পরবর্তি
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var form = $("#create-form");
+        var button = $("#create-button");
+        form.submit(function (event) {
+          button.prop("disabled", true);
+          event.preventDefault();
+
+          $.confirm({
+            title: "",
+            columnClass: "large",
+            content:
+              '<table class="table table-bordered">' +
+              "<tr>" +
+              '<td colspan="3" class="bg-warning"><h4 class="text-center">তুমি কি নিশ্চিত ?</h4></td>' +
+              "</tr>" +
+              "<tr>" +
+              '<td style="width:33%">খরচের ক্যাটাগরি</td>' +
+              '<td class="text-center" style="width:7%">:</td>' +
+              '<td style="width:60%">' +
+              $("#expense_category_id_ :selected").text() +
+              "</td>" +
+              "</tr>" +
+              "<tr>" +
+              '<td style="width:33%">তারিখ</td>' +
+              '<td class="text-center" style="width:7%">:</td>' +
+              '<td style="width:60%">' +
+              $("#date").val() +
+              "</td>" +
+              "</tr>" +
+              "<tr>" +
+              '<td style="width:33%">অ্যামাউন্ট</td>' +
+              '<td class="text-center" style="width:7%">:</td>' +
+              '<td style="width:60%">' +
+              $("#amount").val() +
+              "</td>" +
+              "</tr>" +
+              "<tr>" +
+              '<td style="width:33%">কর্মী</td>' +
+              '<td class="text-center" style="width:7%">:</td>' +
+              '<td style="width:60%">' +
+              $("#employee_id_ :selected").text() +
+              "</td>" +
+              "</tr>" +
+              "<tr>" +
+              '<td style="width:33%">নোট</td>' +
+              '<td class="text-center" style="width:7%">:</td>' +
+              '<td style="width:60%">' +
+              $("#remarks").val() +
+              "</td>" +
+              "</tr>" +
+              "</table>",
+            buttons: {
+              cancel: {
+                text: "Cancel",
+                btnClass: "btn-red",
+                action: function () {
+                  button.prop("disabled", false);
+                },
+              },
+              save_close: {
+                text: "Save & Close",
+                btnClass: "btn-primary",
+                keys: ["enter"],
+                action: function () {
+                  $.ajax({
+                    url: form.attr("action") + "?what_to_do=1",
+                    type: form.attr("method"),
+                    dataType: "json",
+                    data: form.serializeArray(),
+                  })
+                    .done(function (response) {
+                      button.prop("disabled", false);
+                      if (response.success) {
+                        window.open(
+                          "https://s.dsbpos.com/expenses/expenses",
+                          "_parent"
+                        );
+                      } else {
+                        notify(response.message, "danger");
+                        playTone("danger");
+                      }
+                    })
+                    .fail(function (response) {
+                      button.prop("disabled", false);
+                      playTone("danger");
+                      $.each(
+                        response.responseJSON.errors,
+                        function (index, val) {
+                          notify(val[0], "danger");
+                        }
+                      );
+                    });
+                },
+              },
+              save_add_another: {
+                text: "Save & Add Another",
+                btnClass: "btn-success",
+                keys: ["shift"],
+                action: function () {
+                  $.ajax({
+                    url: form.attr("action") + "?what_to_do=1",
+                    type: form.attr("method"),
+                    dataType: "json",
+                    data: form.serializeArray(),
+                  })
+                    .done(function (response) {
+                      button.prop("disabled", false);
+                      if (response.success) {
+                        notify(response.message, "success");
+                        playTone("success");
+
+                        var employee_id = $("#employee_id_").val();
+                        form[0].reset();
+                        $("#employee_id_")
+                          .val(employee_id)
+                          .trigger("change.select2");
+                      } else {
+                        notify(response.message, "danger");
+                        playTone("danger");
+                      }
+                    })
+                    .fail(function (response) {
+                      button.prop("disabled", false);
+                      playTone("danger");
+                      $.each(
+                        response.responseJSON.errors,
+                        function (index, val) {
+                          notify(val[0], "danger");
+                        }
+                      );
+                    });
+                },
+              },
+            },
+          });
+        });
+      });
+    </script>
+  </div>
+</section>
+{% endblock content %}

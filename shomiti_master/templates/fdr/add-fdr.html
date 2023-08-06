@@ -1,0 +1,472 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://s.dsbpos.com/public/lte/plugins/jquery/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <div class="card" style="margin-bottom: 25px">
+      <div class="card-header bg-info text-white" style="cursor: pointer">
+        <h4>
+          <strong> নতুন এফডিআর</strong>
+        </h4>
+      </div>
+      <div class="card-body mb-0 pb-0">
+        <form
+          action="https://s.dsbpos.com/fdr/fdr"
+          method="post"
+          id="create-form"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="623iz3BL8MOGXnHq27rjPyoCwms8GGufzEe0R8Vl"
+          />
+          <h3 class="text-center bg-primary mb-3 p-2">এফডিআর ইনফরমেশন</h3>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="code"><strong>এফডিআর নং *</strong></label>
+              <input type="text" class="form-control" name="code" id="code" />
+            </div>
+            <div class="col-md-3">
+              <label for="employee_id"><strong>কর্মী *</strong></label>
+              <select
+                name="employee_id"
+                id="employee_id"
+                class="form-control select2bs4 select2-hidden-accessible"
+                data-select2-id="employee_id"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option data-select2-id="2">কর্মী সিলেক্ট করুন</option></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="1"
+                style="width: 220.5px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-employee_id-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-employee_id-container"
+                      role="textbox"
+                      aria-readonly="true"
+                      title="কর্মী সিলেক্ট করুন"
+                      >কর্মী সিলেক্ট করুন</span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="col-md-3">
+              <label for="member_id"><strong>সদস্য *</strong></label>
+              <select
+                name="member_id"
+                id="member_id"
+                class="form-control select2bs4 select2-hidden-accessible"
+                data-select2-id="member_id"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option data-select2-id="4">সদস্য সিলেক্ট করুন</option></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="3"
+                style="width: 220.5px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-member_id-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-member_id-container"
+                      role="textbox"
+                      aria-readonly="true"
+                      title="সদস্য সিলেক্ট করুন"
+                      >সদস্য সিলেক্ট করুন</span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="col-md-3">
+              <label for="fdr_package_id"
+                ><strong>এফডিআর স্কিম *</strong></label
+              >
+              <select
+                name="fdr_package_id"
+                id="fdr_package_id"
+                class="form-control select2bs4 select2-hidden-accessible"
+                onchange="if (!window.__cfRLUnblockHandlers) return false; getPackageData()"
+                data-select2-id="fdr_package_id"
+                tabindex="-1"
+                aria-hidden="true"
+              ></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="5"
+                style="width: 220.5px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-fdr_package_id-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-fdr_package_id-container"
+                      role="textbox"
+                      aria-readonly="true"
+                    ></span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="profit_margin"
+                ><strong>লাভের হার (%) *</strong></label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="profit_margin"
+                id="profit_margin"
+                onchange="if (!window.__cfRLUnblockHandlers) return false; getProfit()"
+                onkeyup="if (!window.__cfRLUnblockHandlers) return false; getProfit()"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="type"><strong>টাইপ *</strong></label>
+              <select
+                name="type"
+                id="type"
+                class="form-control select2bs4 select2-hidden-accessible"
+                data-select2-id="type"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option value="open" data-select2-id="7">ওপেন</option>
+                <option value="close">বন্ধ</option></select
+              ><span
+                class="select2 select2-container select2-container--bootstrap4"
+                dir="ltr"
+                data-select2-id="6"
+                style="width: 220.5px"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-disabled="false"
+                    aria-labelledby="select2-type-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-type-container"
+                      role="textbox"
+                      aria-readonly="true"
+                      title="ওপেন"
+                      >ওপেন</span
+                    ><span class="select2-selection__arrow" role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="col-md-3">
+              <label for="opening_date"><strong>ওপেন তারিখ *</strong></label>
+              <input
+                type="date"
+                class="form-control"
+                name="opening_date"
+                id="opening_date"
+                value="2023-08-01"
+                onchange="if (!window.__cfRLUnblockHandlers) return false; getCloseDate()"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="closing_date"><strong>বন্ধের তারিখ :</strong></label>
+              <input
+                type="date"
+                class="form-control"
+                name="closing_date"
+                id="closing_date"
+                readonly=""
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <label for="amount"><strong>অ্যামাউন্ট *</strong></label>
+              <input
+                type="number"
+                class="form-control"
+                name="amount"
+                id="amount"
+                value="0"
+                onchange="if (!window.__cfRLUnblockHandlers) return false; getProfit()"
+                onkeyup="if (!window.__cfRLUnblockHandlers) return false; getProfit()"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="profit"><strong>লাভ:</strong></label>
+              <input
+                type="number"
+                class="form-control"
+                name="profit"
+                id="profit"
+                readonly=""
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="total_amount"
+                ><strong>টোটাল অ্যামাউন্ট :</strong></label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="total_amount"
+                id="total_amount"
+                readonly=""
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="note"><strong>নোট :</strong></label>
+            <textarea
+              class="form-control"
+              name="note"
+              id="note"
+              style="height: 100px; resize: none"
+            ></textarea>
+          </div>
+          <h3 class="text-center bg-primary mb-3 p-2">পেমেন্ট ইনফরমেশন</h3>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <label for="payment_type"><strong>পেমেন্ট টাইফ :</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="payment_type"
+                id="payment_type"
+                value="ক্যাশ / চেক"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="cheque"><strong>চেক নং :</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="cheque"
+                id="cheque"
+                value="none"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="bank"><strong>ব্যাংক :</strong></label>
+              <input type="text" class="form-control" name="bank" id="bank" />
+            </div>
+          </div>
+          <h3 class="text-center bg-primary mb-3 p-2">নমিনি তথ্য</h3>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="name"><strong>নাম :</strong></label>
+              <input type="text" class="form-control" name="name" id="name" />
+              <div
+                data-lastpass-icon-root="true"
+                style="
+                  position: relative !important;
+                  height: 0px !important;
+                  width: 0px !important;
+                  float: left !important;
+                "
+              ></div>
+            </div>
+            <div class="col-md-3">
+              <label for="relation"><strong>সম্পূর্ক :</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="relation"
+                id="relation"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="mobile"><strong>মোবাইল :</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                name="mobile"
+                id="mobile"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="smart_card"
+                ><strong>জাতীয় পরিচয় পত্র নং:</strong></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="smart_card"
+                id="smart_card"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mb-3">
+            <i class="fa fa-save"></i>&nbsp; সেভ করুন
+          </button>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+      getPackageData();
+      function getPackageData() {
+        var package = $("#fdr_package_id").find(":selected");
+        $("#profit_margin").val(package.attr("data-profit-margin"));
+
+        getCloseDate();
+      }
+
+      function getCloseDate() {
+        var closing_date = new Date($("#opening_date").val());
+        closing_date.setDate(
+          closing_date.getDate() +
+            parseInt($("#fdr_package_id").find(":selected").attr("data-days"))
+        );
+        $("#closing_date").val(formattedDate(closing_date));
+      }
+
+      function formattedDate(date) {
+        const months = [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+        ];
+        const days = [
+          "00",
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+        ];
+        var m = months[date.getMonth()];
+        var d = days[date.getDate()];
+        var y = date.getFullYear();
+        return y + "-" + m + "-" + d;
+      }
+
+      getProfit();
+      function getProfit() {
+        var profit_margin = parseFloat($("#profit_margin").val());
+        var amount = parseFloat($("#amount").val());
+        var profit = parseFloat(
+          profit_margin > 0 && amount > 0 ? amount * (profit_margin / 100) : 0
+        );
+        var total_amount = parseFloat(amount + profit);
+
+        $("#profit").val(profit.toFixed(2));
+        $("#total_amount").val(total_amount.toFixed(2));
+      }
+    </script>
+  </div>
+</section>
+{% endblock content %}

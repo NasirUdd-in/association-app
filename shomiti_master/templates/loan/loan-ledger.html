@@ -1,0 +1,725 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 25px">
+      <div class="card-header bg-info text-white" style="cursor: pointer">
+        <h4>
+          <strong>লেজার</strong>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="daterange"><strong>ডেট রেন্জ</strong></label>
+            <input
+              type="text"
+              name="daterange"
+              id="daterange"
+              value="2023-08-01 - 2023-08-31"
+              class="form-control"
+              autocomplete="off"
+              placeholder="Search by daterange"
+            />
+          </div>
+          <div class="col-md-3">
+            <label for="member_id"><strong>সদস্য</strong></label>
+            <select
+              class="form-control select2bs4 select2-hidden-accessible"
+              name="member_id"
+              id="member_id"
+              data-select2-id="member_id"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <option value="0" data-select2-id="2">
+                সদস্য সিলেক্ট করুন
+              </option></select
+            ><span
+              class="select2 select2-container select2-container--bootstrap4"
+              dir="ltr"
+              data-select2-id="1"
+              style="width: 220.5px"
+              ><span class="selection"
+                ><span
+                  class="select2-selection select2-selection--single"
+                  role="combobox"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  tabindex="0"
+                  aria-disabled="false"
+                  aria-labelledby="select2-member_id-container"
+                  ><span
+                    class="select2-selection__rendered"
+                    id="select2-member_id-container"
+                    role="textbox"
+                    aria-readonly="true"
+                    title="সদস্য সিলেক্ট করুন"
+                    >সদস্য সিলেক্ট করুন</span
+                  ><span class="select2-selection__arrow" role="presentation"
+                    ><b role="presentation"></b></span></span></span
+              ><span class="dropdown-wrapper" aria-hidden="true"></span
+            ></span>
+          </div>
+          <div class="col-md-3">
+            <label><strong>&nbsp;</strong></label>
+            <button
+              type="button"
+              class="btn btn-md btn-block btn-primary"
+              onclick="if (!window.__cfRLUnblockHandlers) return false; search()"
+            >
+              <i class="fa fa-search"></i> সার্চ
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span id="datatable-export-file-name" style="display: none">লেজার</span>
+        <div
+          id="DataTables_Table_0_wrapper"
+          class="dataTables_wrapper dt-bootstrap4 no-footer"
+        >
+          <div class="dt-buttons btn-group flex-wrap">
+            <div class="btn-group">
+              <button
+                class="btn btn-secondary buttons-collection dropdown-toggle buttons-page-length btn-sm"
+                tabindex="0"
+                aria-controls="DataTables_Table_0"
+                type="button"
+                aria-haspopup="true"
+              >
+                <span>Show 100 rows</span>
+              </button>
+            </div>
+            <button
+              class="btn buttons-copy buttons-html5 btn-sm btn-warning"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-copy"></i>&nbsp;Copy
+            </button>
+            <button
+              class="btn buttons-print btn-sm btn-dark"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-print"></i>&nbsp;Print
+            </button>
+            <button
+              class="btn buttons-csv buttons-html5 btn-sm btn-success"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-file-csv"></i>&nbsp;CSV
+            </button>
+            <button
+              class="btn buttons-excel buttons-html5 btn-sm btn-primary"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="far fa-file-excel"></i>&nbsp;Excel
+            </button>
+            <button
+              class="btn buttons-pdf buttons-html5 btn-sm btn-info"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-file-pdf"></i>&nbsp;PDF
+            </button>
+          </div>
+          <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label
+              >Search:<input
+                type="search"
+                class="form-control form-control-sm"
+                placeholder=""
+                aria-controls="DataTables_Table_0"
+            /></label>
+          </div>
+          <div class="dataTables_scroll">
+            <div
+              class="dataTables_scrollHead"
+              style="
+                overflow: hidden;
+                position: relative;
+                border: 0px none;
+                width: 100%;
+              "
+            >
+              <div
+                class="dataTables_scrollHeadInner"
+                style="
+                  box-sizing: content-box;
+                  width: 1152.1px;
+                  padding-right: 0px;
+                "
+              >
+                <table
+                  class="table table-bordered last-row-bold table-striped datatable dataTable no-footer"
+                  role="grid"
+                  style="margin-left: 0px; width: 1152.1px"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_desc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 17.4167px"
+                        aria-sort="descending"
+                        aria-label="নং: activate to sort column ascending"
+                      >
+                        নং
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 44.3833px"
+                        aria-label="তারিখ: activate to sort column ascending"
+                      >
+                        তারিখ
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 40.2833px"
+                        aria-label="মেমো নং: activate to sort column ascending"
+                      >
+                        মেমো নং
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 46.0667px"
+                        aria-label="আইডি নং: activate to sort column ascending"
+                      >
+                        আইডি নং
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 41.6px"
+                        aria-label="সদস্য: activate to sort column ascending"
+                      >
+                        সদস্য
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 37.85px"
+                        aria-label="সঞ্চয়: activate to sort column ascending"
+                      >
+                        সঞ্চয়
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 59px"
+                        aria-label="উত্তোলন: activate to sort column ascending"
+                      >
+                        উত্তোলন
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 55.2px"
+                        aria-label="সঞ্চয় ব্যালেন্স: activate to sort column ascending"
+                      >
+                        সঞ্চয় ব্যালেন্স
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 44.6333px"
+                        aria-label="ঋণ আদায়: activate to sort column ascending"
+                      >
+                        ঋণ আদায়
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 50.5333px"
+                        aria-label="ঋণ ব্যলেন্স: activate to sort column ascending"
+                      >
+                        ঋণ ব্যলেন্স
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 60.7px"
+                        aria-label="জরিমানা: activate to sort column ascending"
+                      >
+                        জরিমানা
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 35.3667px"
+                        aria-label="কিস্তি বাকি: activate to sort column ascending"
+                      >
+                        কিস্তি বাকি
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 59.0667px"
+                        aria-label="সংগ্রহ করেছেন: activate to sort column ascending"
+                      >
+                        সংগ্রহ করেছেন
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div
+              class="dataTables_scrollBody"
+              style="position: relative; overflow: auto; width: 100%"
+            >
+              <table
+                class="table table-bordered last-row-bold table-striped datatable dataTable no-footer"
+                id="DataTables_Table_0"
+                role="grid"
+                aria-describedby="DataTables_Table_0_info"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr role="row" style="height: 0px">
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 17.4167px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        নং
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 44.3833px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        তারিখ
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 40.2833px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        মেমো নং
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 46.0667px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        আইডি নং
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 41.6px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        সদস্য
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 37.85px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        সঞ্চয়
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 59px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        উত্তোলন
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 55.2px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        সঞ্চয় ব্যালেন্স
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 44.6333px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        ঋণ আদায়
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 50.5333px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        ঋণ ব্যলেন্স
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 60.7px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        জরিমানা
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 35.3667px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        কিস্তি বাকি
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 59.0667px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        সংগ্রহ করেছেন
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr class="odd">
+                    <td colspan="13" class="dataTables_empty" valign="top">
+                      No data available in table
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            class="dataTables_info"
+            id="DataTables_Table_0_info"
+            role="status"
+            aria-live="polite"
+          >
+            Showing 0 to 0 of 0 entries
+          </div>
+          <div
+            class="dataTables_paginate paging_simple_numbers"
+            id="DataTables_Table_0_paginate"
+          >
+            <ul class="pagination">
+              <li
+                class="paginate_button page-item previous disabled"
+                id="DataTables_Table_0_previous"
+              >
+                <a
+                  href="#"
+                  aria-controls="DataTables_Table_0"
+                  data-dt-idx="0"
+                  tabindex="0"
+                  class="page-link"
+                  >Previous</a
+                >
+              </li>
+              <li
+                class="paginate_button page-item next disabled"
+                id="DataTables_Table_0_next"
+              >
+                <a
+                  href="#"
+                  aria-controls="DataTables_Table_0"
+                  data-dt-idx="1"
+                  tabindex="0"
+                  class="page-link"
+                  >Next</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function search() {
+        var daterange = $("#daterange").val();
+        var from = daterange.split(" - ")[0];
+        var to = daterange.split(" - ")[1];
+
+        from = from == undefined ? "" : from;
+        to = to == undefined ? "" : to;
+
+        var member_id = $("#member_id").val();
+
+        openLink(
+          "https://s.dsbpos.com/loans/ledger/" +
+            member_id +
+            "&" +
+            from +
+            "&" +
+            to
+        );
+      }
+    </script>
+  </div>
+</section>
+{% endblock content %}

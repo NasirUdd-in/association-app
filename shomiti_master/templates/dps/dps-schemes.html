@@ -1,0 +1,451 @@
+{% extends 'base/base.html' %} {% block title %}Season List{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Season</a></li>
+              <li class="active">List</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<section class="content" style="padding-top: 25px">
+  <div class="container-fluid">
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog modal-lg" id="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              বন্ধ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 25px">
+      <div class="card-header bg-info text-white" style="cursor: pointer">
+        <h4>
+          <strong>ডিপিএস স্কিম</strong>
+          <a
+            class="btn btn-success btn-lg"
+            style="float: right"
+            onclick="if (!window.__cfRLUnblockHandlers) return false; Show('New DPS Schemes','https://s.dsbpos.com/dps/dps-schemes/create')"
+            ><i class="fa fa-plus"></i>&nbsp;নতুন স্কিম</a
+          >
+        </h4>
+      </div>
+      <div class="card-body">
+        <span id="datatable-export-file-name" style="display: none"
+          >DPS Schemes</span
+        >
+        <div
+          id="DataTables_Table_0_wrapper"
+          class="dataTables_wrapper dt-bootstrap4 no-footer"
+        >
+          <div class="dt-buttons btn-group flex-wrap">
+            <div class="btn-group">
+              <button
+                class="btn btn-secondary buttons-collection dropdown-toggle buttons-page-length btn-sm"
+                tabindex="0"
+                aria-controls="DataTables_Table_0"
+                type="button"
+                aria-haspopup="true"
+              >
+                <span>Show 100 rows</span>
+              </button>
+            </div>
+            <button
+              class="btn buttons-copy buttons-html5 btn-sm btn-warning"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-copy"></i>&nbsp;Copy
+            </button>
+            <button
+              class="btn buttons-print btn-sm btn-dark"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-print"></i>&nbsp;Print
+            </button>
+            <button
+              class="btn buttons-csv buttons-html5 btn-sm btn-success"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-file-csv"></i>&nbsp;CSV
+            </button>
+            <button
+              class="btn buttons-excel buttons-html5 btn-sm btn-primary"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="far fa-file-excel"></i>&nbsp;Excel
+            </button>
+            <button
+              class="btn buttons-pdf buttons-html5 btn-sm btn-info"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+            >
+              <i class="fas fa-file-pdf"></i>&nbsp;PDF
+            </button>
+          </div>
+          <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label
+              >Search:<input
+                type="search"
+                class="form-control form-control-sm"
+                placeholder=""
+                aria-controls="DataTables_Table_0"
+            /></label>
+          </div>
+          <div class="dataTables_scroll">
+            <div
+              class="dataTables_scrollHead"
+              style="
+                overflow: hidden;
+                position: relative;
+                border: 0px none;
+                width: 100%;
+              "
+            >
+              <div
+                class="dataTables_scrollHeadInner"
+                style="
+                  box-sizing: content-box;
+                  width: 972px;
+                  padding-right: 0px;
+                "
+              >
+                <table
+                  class="table table-bordered table-striped datatable dataTable no-footer"
+                  role="grid"
+                  style="margin-left: 0px; width: 972px"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_desc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 37.8px"
+                        aria-sort="descending"
+                        aria-label="নং: activate to sort column ascending"
+                      >
+                        নং
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 53.75px"
+                        aria-label="স্কিম: activate to sort column ascending"
+                      >
+                        স্কিম
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 14.85px"
+                        aria-label=": activate to sort column ascending"
+                      ></th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 174.933px"
+                        aria-label="মাসিক ডিপোজিট: activate to sort column ascending"
+                      >
+                        মাসিক ডিপোজিট
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 163.817px"
+                        aria-label="লাভের হার (%): activate to sort column ascending"
+                      >
+                        লাভের হার (%)
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 129.2px"
+                        aria-label="কর্মী কমিশন: activate to sort column ascending"
+                      >
+                        কর্মী কমিশন
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        style="width: 95.65px"
+                        aria-label="অ্যাকশন: activate to sort column ascending"
+                      >
+                        অ্যাকশন
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div
+              class="dataTables_scrollBody"
+              style="position: relative; overflow: auto; width: 100%"
+            >
+              <table
+                class="table table-bordered table-striped datatable dataTable no-footer"
+                id="DataTables_Table_0"
+                role="grid"
+                aria-describedby="DataTables_Table_0_info"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr role="row" style="height: 0px">
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 37.8px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        নং
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 53.75px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        স্কিম
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 14.85px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      ></div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 174.933px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        মাসিক ডিপোজিট
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 163.817px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        লাভের হার (%)
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 129.2px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        কর্মী কমিশন
+                      </div>
+                    </th>
+                    <th
+                      class="sorting"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      style="
+                        width: 95.65px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        border-top-width: 0px;
+                        border-bottom-width: 0px;
+                        height: 0px;
+                      "
+                    >
+                      <div
+                        class="dataTables_sizing"
+                        style="height: 0px; overflow: hidden"
+                      >
+                        অ্যাকশন
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr class="odd">
+                    <td colspan="7" class="dataTables_empty" valign="top">
+                      No data available in table
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            class="dataTables_info"
+            id="DataTables_Table_0_info"
+            role="status"
+            aria-live="polite"
+          >
+            Showing 0 to 0 of 0 entries
+          </div>
+          <div
+            class="dataTables_paginate paging_simple_numbers"
+            id="DataTables_Table_0_paginate"
+          >
+            <ul class="pagination">
+              <li
+                class="paginate_button page-item previous disabled"
+                id="DataTables_Table_0_previous"
+              >
+                <a
+                  href="#"
+                  aria-controls="DataTables_Table_0"
+                  data-dt-idx="0"
+                  tabindex="0"
+                  class="page-link"
+                  >Previous</a
+                >
+              </li>
+              <li
+                class="paginate_button page-item next disabled"
+                id="DataTables_Table_0_next"
+              >
+                <a
+                  href="#"
+                  aria-controls="DataTables_Table_0"
+                  data-dt-idx="1"
+                  tabindex="0"
+                  class="page-link"
+                  >Next</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
