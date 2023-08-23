@@ -47,137 +47,20 @@
       <div class="card-header bg-info text-white" style="cursor: pointer">
         <h4>
           <strong>নতুন কর্মী</strong>
-          <a
-            class="btn btn-success btn-sm"
-            style="float: right"
-            
-            >ফিরে যাও</a
-          >
+          <a class="btn btn-success btn-sm" style="float: right">ফিরে যাও</a>
         </h4>
       </div>
       <div class="card-body" data-select2-id="10">
-        <form
-          method="post"
-          id="create-form"
-          enctype="multipart/form-data"
-          data-select2-id="create-form"
-        >
+        <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
-         
-          <div class="row mb-4">
-            <div class="col-12 mb-4">
-              <h4 class="bg-success p-2 text-center text-white">
-                <strong>কর্মীদের তথ্য</strong>
-              </h4>
-            </div>
-            <div class="col-md-7">
-              <div class="form-group">
-                <label for="{{ form.admission_date.id }}"
-                  ><strong
-                    >ভর্তির তারিখ <span class="text-danger">*</span></strong
-                  ></label
-                >
-                {{ form.admission_date }} 
-                </div>
-                <div class="col-6">
-                  <label for="{form.name.id}"
-                    ><strong
-                      >নাম <span class="text-danger">*</span></strong
-                    ></label
-                  >
-                  {{form.name}} 
-                  <div
-                    data-lastpass-icon-root="true"
-                    style="
-                      position: relative !important;
-                      height: 0px !important;
-                      width: 0px !important;
-                      float: left !important;
-                    "
-                  ></div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-6">
-                  <label for="{form.mobile_number.id}"
-                    ><strong
-                      >মোবাইল <span class="text-danger">*</span></strong
-                    ></label
-                  >
-                  {{form.mobile_number}} 
-                </div>
-                <div class="col-6">
-                  <label for="{form.nid_number.id}"
-                    ><strong>এনআইডি নং </strong></label
-                  >
-                  {{form.nid_number}} 
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-6">
-                  <label for="{form.salary.id}"
-                    ><strong
-                      >সেলারি <span class="text-danger">*</span></strong
-                    ></label
-                  >
-                  {{form.salary}}
-                </div>
-                <div class="col-6">
-                  <label for="{form.address.id}"><strong>ঠিকানা</strong></label>
-                  {{form.address}} 
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="{form.note.id}"><strong>নোট </strong></label>
-                {{form.note}} 
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="row">
-                <div class="col-7">
-                  <div class="form-group">
-                    <label for="{form.father_name.id"
-                      ><strong>পিতার নাম </strong></label
-                    >
-                    {{form.father_name}} 
-                  </div>
-                  <div class="form-group">
-                    <label for="{form.mother_name.id"
-                      ><strong>মায়ের নাম </strong></label
-                    >
-                    {{form.mother_name}} 
-                  </div>
-                  <div class="form-group">
-                    <label for="{form.husband_or_wife_name.id}"
-                      ><strong>ম্বামি / স্ত্রী </strong></label
-                    >
-                    {{form.husband_or_wife_name}}
-                  </div>
-                  <div class="form-group">
-                    <label for="{form.religion.id}"
-                      ><strong>ধর্ম </strong></label
-                    >
-                    {{form.religion}} 
-                  </div>
-                  <div class="form-group">
-                    <label for="{form.second_contact_number.id}"
-                      ><strong>২য় যোগাযোগ </strong></label
-                    >
-                    {{form.second_contact_number}}
-                  </div>
-                </div>
-               
-              </div>
-            </div>
-          </div>
           <div class="form-group">
-            <label for="{{ form.image.id }}"><strong>Image</strong></label>
-            {{ form.image }}
-        </div>
-         
-          <button type="submit" class="btn btn-primary">
-            <i class="fa fa-save"></i>&nbsp; সেভ ও বন্ধ করুন
-          </button>
+            <label for="exampleInputEmail1">Email address</label>
+            <div>{{ employee_form }}</div>
+            <div>{{ employee_login_form.as_p }}</div>
+            <div>{{granter_form.as_p }}</div>
+          </div>
+          <br />
+          <button type="submit">Upload</button>
         </form>
       </div>
     </div>
