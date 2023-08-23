@@ -54,13 +54,12 @@
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
             <div>{{ employee_form }}</div>
-            <div>{{ employee_login_form.as_p }}</div>
-            <div>{{granter_form.as_p }}</div>
+            <div>{{granter_form }}</div>
+            <div>{{ employee_login_form }}</div>
           </div>
           <br />
-          <button type="submit">Upload</button>
+          <button class="btn btn-primary" type="submit">সেভ ও বন্ধ করুন</button>
         </form>
       </div>
     </div>

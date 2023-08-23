@@ -15,18 +15,6 @@ from .forms import GranterForm, EmployeeForm, EmployeeLoginForm
 
 from django.http import HttpResponse
 from .forms import HotelForm
-from django.contrib.auth.backends import ModelBackend
-
-
-class EmployeeLoginBackend(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
-        try:
-            user = EmployeeLogin.objects.get(
-                user_name=username, password=password)
-            if user.login_permission == 'active':
-                return user.employee
-        except EmployeeLogin.DoesNotExist:
-            return None
 
 
 def hotel_image_view(request):
